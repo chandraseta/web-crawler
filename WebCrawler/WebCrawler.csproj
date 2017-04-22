@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\BoyerMoore.cs" />
+    <Compile Include="src\Test.cs" />
     <Compile Include="src\KMP.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -70,7 +70,7 @@ namespace WebCrawler.src
                 }
                 else if (pattern_idx > 0)
                 {
-                    j = border[j - 1];
+                    pattern_idx = border[pattern_idx - 1];
                 }
                 else
                 {
