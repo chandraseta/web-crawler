@@ -15,25 +15,29 @@ namespace WebCrawler.src
         public RSSParser(string[] RSSLinks)
         {
             XmlDocument rssXmlDoc = new XmlDocument();
-            Console.WriteLine("In process: RSSParser");
             for (int i=0; i<RSSLinks.Length; i++)
             {
                 rssXmlDoc.Load(RSSLinks[i]);
                 XmlNodeList rssNodes = rssXmlDoc.SelectNodes("rss/channel/item");
-                Console.WriteLine("In loop: RSSParser Length");
                 foreach (XmlNode rssNode in rssNodes)
                 {
                     Console.WriteLine("In loop: RSSParser Nodes");
                     XmlNode rssSubNode = rssNode.SelectSingleNode("title");
                     string title = rssSubNode != null ? rssSubNode.InnerText : "";
 
-                    rssSubNode = rssNode.SelectSingleNode("url");
+                    rssSubNode = rssNode.SelectSingleNode("image");
                     string img_url = rssSubNode != null ? rssSubNode.InnerText : "";
 
                     rssSubNode = rssNode.SelectSingleNode("description");
                     string description = rssSubNode != null ? rssSubNode.InnerText : "";
 
-                    News rssNews = new News(title, img_url, description);
+                    rssSubNode = rssNode.SelectSingleNode("url");
+                    string url = rssSubNode != null ? rssSubNode.InnerText : "";
+
+                    // TODO: Use HTML Parser to get content
+                    string content = "";
+
+                    News rssNews = new News(title, img_url, description, url, content);
                     NewsFeed.Add(rssNews);
                 }
             }

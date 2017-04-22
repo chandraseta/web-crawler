@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace WebCrawler.src
 {
@@ -44,7 +45,7 @@ namespace WebCrawler.src
 
             string[] rssLink;
             rssLink = new string[1];
-            rssLink[0] = "http://rss.detik.com/index.php/detikcom";
+            rssLink[0] = "http://www.tempo.co/rss/terkini";
 
             RSSParser RP = new RSSParser(rssLink);
             List<News> NL = RP.getNews();
@@ -53,6 +54,7 @@ namespace WebCrawler.src
                 Console.WriteLine("Title: {0}", N.getTitle());
                 Console.WriteLine("img_url: {0}", N.getImgUrl());
                 Console.WriteLine("Description: {0}", N.getDescription());
+                Console.WriteLine("URL: {0}", N.getUrl());
                 Console.WriteLine();
             }
 
