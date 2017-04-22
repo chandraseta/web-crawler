@@ -19,7 +19,7 @@ namespace WebCrawler.src
             string html = new HttpClient().GetStringAsync(url).Result;
             htmlDoc.LoadHtml(html);
 
-            var nodes = htmlDoc.DocumentNode.SelectSingleNode("//p");
+            var nodes = htmlDoc.DocumentNode.SelectNodes("//p");
             news_content = nodes[0].OuterHtml;
         }
     }
