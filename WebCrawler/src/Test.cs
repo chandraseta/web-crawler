@@ -10,6 +10,7 @@ namespace WebCrawler.src
     {
         public static void Main(string[] args)
         {
+            /*
             string keyword;
             string text;
 
@@ -39,10 +40,26 @@ namespace WebCrawler.src
             {
                 Console.WriteLine("Keyword not found in text");
             }
+            */
+
+            string[] rssLink;
+            rssLink = new string[1];
+            rssLink[0] = "http://rss.detik.com/index.php/detikcom";
+
+            RSSParser RP = new RSSParser(rssLink);
+            List<News> NL = RP.getNews();
+            foreach (News N in NL)
+            {
+                Console.WriteLine("Title: {0}", N.getTitle());
+                Console.WriteLine("img_url: {0}", N.getImgUrl());
+                Console.WriteLine("Description: {0}", N.getDescription());
+                Console.WriteLine();
+            }
 
             Console.WriteLine();
             Console.WriteLine("Press any key to continue");
             Console.ReadLine();
+
         }
     }
 }

@@ -36,8 +36,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\BoyerMoore.cs" />
+    <Compile Include="src\News.cs" />
+    <Compile Include="src\RSSParser.cs" />
     <Compile Include="src\Test.cs" />
     <Compile Include="src\KMP.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
