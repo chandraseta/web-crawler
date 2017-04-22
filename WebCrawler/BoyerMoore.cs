@@ -13,7 +13,7 @@ namespace WebCrawler.src
 
         public BoyerMoore(string keyword)
         {
-            pattern = String.Copy(keyword.ToLower());
+            pattern = keyword.ToLower();
             last_occurence = new int[pattern.Length];
             last_occurence = CreateLastOccurence();
         }
@@ -34,7 +34,7 @@ namespace WebCrawler.src
 
         public int Search(string text)
         {
-            string lower_case_text = String.Copy(text.ToLower());
+            string lower_case_text = text.ToLower();
             int text_length = text.Length;
             int pattern_length = pattern.Length;
             int text_idx = pattern_length - 1;
