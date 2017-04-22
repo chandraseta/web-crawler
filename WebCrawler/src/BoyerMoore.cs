@@ -13,7 +13,7 @@ namespace WebCrawler.src
 
         public BoyerMoore(string keyword)
         {
-            pattern = String.Copy(keyword);
+            pattern = String.Copy(keyword.ToLower());
             last_occurence = new int[pattern.Length];
             last_occurence = CreateLastOccurence();
         }
@@ -34,6 +34,7 @@ namespace WebCrawler.src
 
         public int Search(string text)
         {
+            string lower_case_text = String.Copy(text.ToLower());
             int text_length = text.Length;
             int pattern_length = pattern.Length;
             int text_idx = pattern_length - 1;
@@ -46,7 +47,7 @@ namespace WebCrawler.src
             int pattern_idx = pattern.Length - 1;
             do
             {
-                if (pattern[pattern_idx] == text[text_idx])
+                if (pattern[pattern_idx] == lower_case_text[text_idx])
                 {
                     if (pattern_idx == 0)
                     {
@@ -60,7 +61,7 @@ namespace WebCrawler.src
                 }
                 else
                 {
-                    int last_occured = last_occurence[text[text_idx]];
+                    int last_occured = last_occurence[lower_case_text[text_idx]];
                     text_idx = text_idx + pattern_length - Math.Min(pattern_idx, last_occured + 1);
                     pattern_idx = pattern_length - 1;
                 }

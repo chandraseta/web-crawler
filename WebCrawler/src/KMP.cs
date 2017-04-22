@@ -13,7 +13,7 @@ namespace WebCrawler.src
 
         public KMP(string keyword)
         {
-            pattern = String.Copy(keyword);
+            pattern = String.Copy(keyword.ToLower());
             border = new int[pattern.Length];
             border = CreateBorder();
         }
@@ -51,6 +51,7 @@ namespace WebCrawler.src
 
         public int Search(string text)
         {
+            string lower_case_text = String.Copy(text.ToLower());
             int text_length = text.Length;
             int pattern_length = pattern.Length;
 
@@ -59,7 +60,7 @@ namespace WebCrawler.src
 
             while (text_idx < text_length)
             {
-                if (pattern[pattern_idx] == text[text_idx])
+                if (pattern[pattern_idx] == lower_case_text[text_idx])
                 {
                     if (pattern_idx == pattern_length-1)
                     {
