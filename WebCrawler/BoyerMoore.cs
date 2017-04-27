@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace WebCrawler.src
+namespace WebCrawler
 {
-    public class BoyerMoore
+    public class BoyerMoore : Searcher
     {
-        private string pattern;
         private int[] last_occurence;
 
-        public BoyerMoore(string keyword)
+        public BoyerMoore(string keyword) : base(keyword)
         {
             pattern = keyword.ToLower();
             last_occurence = new int[pattern.Length];
@@ -32,7 +27,7 @@ namespace WebCrawler.src
             return res;
         }
 
-        public int Search(string text)
+        public override int searchIn(string text)
         {
             string lower_case_text = text.ToLower();
             int text_length = text.Length;

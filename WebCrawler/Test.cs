@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
-namespace WebCrawler.src
+namespace WebCrawler
 {
     public class Test
     {
@@ -42,7 +42,7 @@ namespace WebCrawler.src
                 Console.WriteLine("Keyword not found in text");
             }
             */
-
+            
             string[] rssLink;
             rssLink = new string[1];
             rssLink[0] = "http://www.tempo.co/rss/terkini";

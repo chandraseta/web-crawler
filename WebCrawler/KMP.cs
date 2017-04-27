@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace WebCrawler.src
+namespace WebCrawler
 {
-    public class KMP
+    public class KMP : Searcher
     {
-        private string pattern;
         private int[] border;
 
-        public KMP(string keyword)
+        public KMP(string keyword) : base(keyword)
         {
-            pattern = keyword.ToLower();
             border = new int[pattern.Length];
             border = CreateBorder();
         }
@@ -49,7 +43,7 @@ namespace WebCrawler.src
             return res;
         }
 
-        public int Search(string text)
+        override public int searchIn(string text)
         {
             string lower_case_text = text.ToLower();
             int text_length = text.Length;

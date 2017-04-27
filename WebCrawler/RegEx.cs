@@ -1,22 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml;
-using System.IO;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace WebCrawler
 {
-    public class RegEx
+    public class RegEx : Searcher
     {
-        private string pattern;
-        public RegEx(string userinput)
+        public RegEx(string keyword) : base(keyword)
         {
-            pattern = userinput;
+
         }
-        public int Search(string text)
+        public override int searchIn(string text)
         {
             Match match = Regex.Match(text, @pattern, RegexOptions.IgnoreCase);
             if (match.Success)
