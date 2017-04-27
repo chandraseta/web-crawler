@@ -6814,3 +6814,11 @@ td.visible-print {
     display: none !important;
   }
 }
+
+a.clickLabel{
+    color: #428bca;
+}
+
+a.clickLabel:hover {
+    text-decoration: solid;
+}

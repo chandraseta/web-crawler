@@ -76,5 +76,9 @@ namespace WebCrawler
                 }
             }
         }
+
+        public void AboutClick(object sender, EventArgs e) {
+            Response.Redirect("About.aspx");
+        }
     }
 }

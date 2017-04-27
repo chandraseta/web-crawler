@@ -28,6 +28,7 @@
                 <div>
                     <br>
                     <asp:Label ID="contentHasilPencarian" runat="server"></asp:Label>
+                    <asp:LinkButton ID="about" runat="server" CssClass="clickLabel" OnClick="AboutClick">About</asp:LinkButton>
                 </div>
                 <span runat="server" id="changed_text" />
             </fieldset>
