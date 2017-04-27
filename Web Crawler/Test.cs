@@ -5,12 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
-namespace WebCrawler
-{
-    public class Test
-    {
-        public static void Main(string[] args)
-        {
+namespace WebCrawler {
+    public class Test {
+        public static void Main(string[] args) {
             /*
             string keyword;
             string text;
@@ -42,15 +39,14 @@ namespace WebCrawler
                 Console.WriteLine("Keyword not found in text");
             }
             */
-            
+
             string[] rssLink;
             rssLink = new string[1];
             rssLink[0] = "http://www.tempo.co/rss/terkini";
 
             RSSParser RP = new RSSParser(rssLink);
             List<News> NL = RP.getNews();
-            foreach (News N in NL)
-            {
+            foreach (News N in NL) {
                 Console.WriteLine("Title: {0}", N.getTitle());
                 Console.WriteLine("img_url: {0}", N.getImgUrl());
                 Console.WriteLine("Description: {0}", N.getDescription());
@@ -58,7 +54,7 @@ namespace WebCrawler
                 Console.WriteLine("Content: {0}", N.getContent());
                 Console.WriteLine();
             }
-            
+
 
             Console.WriteLine();
             Console.WriteLine("Press any key to continue");

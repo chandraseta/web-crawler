@@ -6,14 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 
-namespace WebCrawler
-{
-    public class HTMLParser
-    {
+namespace WebCrawler {
+    public class HTMLParser {
         string news_content;
 
-        public HTMLParser(string url)
-        {
+        public HTMLParser(string url) {
             /*
             HtmlDocument htmlDoc = new HtmlDocument();
             HtmlAgilityPack.HtmlNode.ElementsFlags["br"] = HtmlAgilityPack.HtmlElementFlag.Empty;
@@ -39,13 +36,12 @@ namespace WebCrawler
             var nodes = htmlDoc.DocumentNode.SelectNodes("//p");
             //foreach (var node in nodes)
             //{
-                //Console.WriteLine(nodes[0].OuterHtml);
-                news_content = nodes[0].InnerText;
+            //Console.WriteLine(nodes[0].OuterHtml);
+            news_content = nodes[0].InnerText;
             //}
         }
 
-        public string getContent()
-        {
+        public string getContent() {
             return news_content;
         }
     }

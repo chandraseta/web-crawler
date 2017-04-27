@@ -1,24 +1,21 @@
-﻿namespace WebCrawler
-{
-    public abstract class Searcher
-    {
+﻿namespace WebCrawler {
+    public class Searcher {
         protected string pattern;
 
-        public Searcher(string input)
-        {
+        public Searcher(string input) {
             pattern = input.ToLower();
         }
 
-        public string getPattern()
-        {
+        public string getPattern() {
             return pattern;
         }
-        
-        public void setPattern(string input)
-        {
+
+        public void setPattern(string input) {
             pattern = input.ToLower();
         }
 
-        public abstract int searchIn(string text);
+        public virtual int searchIn(string text) {
+            return -1;
+        }
     }
 }
