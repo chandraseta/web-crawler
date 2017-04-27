@@ -20,9 +20,11 @@ namespace Web_Crawler
             rssLink = new string[1];
             rssLink[0] = "http://www.tempo.co/rss/terkini";
 
+            //parsing rss dan mendapatkan list of News
             RP = new RSSParser(rssLink);
             NL = RP.getNews();
 
+            //inisialisasi
             textTyped.Text = string.Empty;
             buttonSelected.Text = string.Empty;
             contentHasilPencarian.Text = string.Empty;
@@ -30,6 +32,7 @@ namespace Web_Crawler
 
         protected void ButtonClick(object sender, EventArgs e)
         {
+            TextBoxKosong.Text = string.Empty;
             textTyped.Text = TextBox1.Text;
             if (textTyped.Text == string.Empty)
             {
@@ -40,21 +43,34 @@ namespace Web_Crawler
             string kalimat = "";
             foreach (News N in NL)
             {
-                GetKalimatInIndex get = new GetKalimatInIndex(N.getContent());
+                GetterKalimat get = new GetterKalimat(N.getContent());
                 //Console.WriteLine("berita: "+N.getContent());
                 if (buttonSelected.Text == "KMP")
                 {
                     if (textTyped.Text != "String kosong")
                     {
                         KMP kmp = new KMP(textTyped.Text);
-                        
+
                         //menampilkan indeks dari konten yang dicari
-                        index = kmp.searchIn(N.getContent());
-                        if(index > 0)
-                        { 
-                            string url = "<a href=" + N.getUrl()+ ">" +N.getTitle()+ "</a>";
-                            kalimat = get.getKalimat(index);
+                        //mencari di judul
+                        index = kmp.searchIn(N.getTitle());
+                        if (index > 0)
+                        {
+                            GetterKalimat getInJudul = new GetterKalimat(N.getTitle());
+                            string url = "<a href=" + N.getUrl() + ">" + N.getTitle() + "</a>";
+                            kalimat = N.getTitle();
                             contentHasilPencarian.Text += url + "<br><br>" + kalimat + "<br><br><hr>";
+                        }
+                        else
+                        {
+                            //mencari di konten berita
+                            index = kmp.searchIn(N.getContent());
+                            if (index > 0)
+                            {
+                                string url = "<a href=" + N.getUrl() + ">" + N.getTitle() + "</a>";
+                                kalimat = get.getKalimat(index);
+                                contentHasilPencarian.Text += url + "<br><br>" + kalimat + "<br><br><hr>";
+                            }
                         }
                     }
 
@@ -63,16 +79,29 @@ namespace Web_Crawler
                     if (textTyped.Text != "String kosong")
                     {
                         BoyerMoore boyerMoore = new BoyerMoore(textTyped.Text);
-                        
+
                         //menampilkan indeks dari konten yang dicari
-                        index = boyerMoore.searchIn(N.getContent());
+                        //mencari di judul
+                        index = boyerMoore.searchIn(N.getTitle());
                         if (index > 0)
                         {
+                            GetterKalimat getInJudul = new GetterKalimat(N.getTitle());
                             string url = "<a href=" + N.getUrl() + ">" + N.getTitle() + "</a>";
-                            kalimat = get.getKalimat(index);
+                            kalimat = N.getTitle();
                             contentHasilPencarian.Text += url + "<br><br>" + kalimat + "<br><br><hr>";
                         }
+                        else
+                        {
+                            //mencari di konten berita
+                            index = boyerMoore.searchIn(N.getContent());
+                            if (index > 0)
+                            {
+                                string url = "<a href=" + N.getUrl() + ">" + N.getTitle() + "</a>";
+                                kalimat = get.getKalimat(index);
+                                contentHasilPencarian.Text += url + "<br><br>" + kalimat + "<br><br><hr>";
+                            }
 
+                        }
                     }
                 }else // Regex
                 {
@@ -80,15 +109,29 @@ namespace Web_Crawler
                     {
                         RegEx regex = new RegEx(textTyped.Text);
                         //menampilkan indeks dari konten yang dicari
-                        
-                        index = regex.searchIn(N.getContent());
+                        //mencari di judul
+                        index = regex.searchIn(N.getTitle());
                         if (index > 0)
                         {
+                            GetterKalimat getInJudul = new GetterKalimat(N.getTitle());
                             string url = "<a href=" + N.getUrl() + ">" + N.getTitle() + "</a>";
-                            kalimat = get.getKalimat(index);
+                            kalimat = N.getTitle();
                             contentHasilPencarian.Text += url + "<br><br>" + kalimat + "<br><br><hr>";
+                            
                         }
-
+                        else
+                        {
+                            //mencari di konten berita
+                            index = regex.searchIn(N.getContent());
+                            if (index > 0)
+                            {
+                                string url = "<a href=" + N.getUrl() + ">" + N.getTitle() + "</a>";
+                                kalimat = get.getKalimat(index);
+                                contentHasilPencarian.Text += url + "<br><br>" + kalimat + "<br><br><hr>";
+                                
+                            }
+                            
+                        }
                     }
                 }       
             }

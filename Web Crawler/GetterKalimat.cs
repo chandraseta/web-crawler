@@ -4,11 +4,11 @@ using System.Text;
 
 namespace WebCrawler
 {
-    class GetKalimatInIndex
+    class GetterKalimat
     {
     private string kataInput = "";
     private string kalimat = "";
-    public GetKalimatInIndex(string kata)
+    public GetterKalimat(string kata)
     {
         kataInput = kata;
     }
