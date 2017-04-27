@@ -19,9 +19,9 @@ namespace WebCrawler.src
             {
                 rssXmlDoc.Load(RSSLinks[i]);
                 XmlNodeList rssNodes = rssXmlDoc.SelectNodes("rss/channel/item");
+                int j = 0;
                 foreach (XmlNode rssNode in rssNodes)
                 {
-                    Console.WriteLine("In loop: RSSParser Nodes");
                     XmlNode rssSubNode = rssNode.SelectSingleNode("title");
                     string title = rssSubNode != null ? rssSubNode.InnerText : "";
 
@@ -35,10 +35,16 @@ namespace WebCrawler.src
                     string url = rssSubNode != null ? rssSubNode.InnerText : "";
 
                     // TODO: Use HTML Parser to get content
-                    string content = "";
+                    HTMLParser hp = new HTMLParser(url);
+                    string content = hp.getContent();
 
                     News rssNews = new News(title, img_url, description, url, content);
                     NewsFeed.Add(rssNews);
+                    Console.WriteLine("News count: {0}", ++j);
+                    if (j >= 5)
+                    {
+                        break;
+                    }
                 }
             }
         }

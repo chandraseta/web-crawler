@@ -49,7 +49,7 @@ namespace WebCrawler.src
             return res;
         }
 
-        public int Search(string text)
+        public int SearchIn(string text)
         {
             string lower_case_text = text.ToLower();
             int text_length = text.Length;

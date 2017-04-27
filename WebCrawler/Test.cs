@@ -42,7 +42,7 @@ namespace WebCrawler.src
                 Console.WriteLine("Keyword not found in text");
             }
             */
-
+            
             string[] rssLink;
             rssLink = new string[1];
             rssLink[0] = "http://www.tempo.co/rss/terkini";
@@ -55,8 +55,10 @@ namespace WebCrawler.src
                 Console.WriteLine("img_url: {0}", N.getImgUrl());
                 Console.WriteLine("Description: {0}", N.getDescription());
                 Console.WriteLine("URL: {0}", N.getUrl());
+                Console.WriteLine("Content: {0}", N.getContent());
                 Console.WriteLine();
             }
+            
 
             Console.WriteLine();
             Console.WriteLine("Press any key to continue");
