@@ -49,15 +49,6 @@ namespace WebCrawler {
         protected global::System.Web.UI.WebControls.Label contentHasilPencarian;
         
         /// <summary>
-        /// about control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton about;
-        
-        /// <summary>
         /// changed_text control.
         /// </summary>
         /// <remarks>

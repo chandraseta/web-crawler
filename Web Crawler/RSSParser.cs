@@ -11,7 +11,6 @@ namespace WebCrawler {
             for (int i = 0; i < RSSLinks.Length; i++) {
                 rssXmlDoc.Load(RSSLinks[i]);
                 XmlNodeList rssNodes = rssXmlDoc.SelectNodes("rss/channel/item");
-                int j = 0;
                 foreach (XmlNode rssNode in rssNodes) {
                     XmlNode rssSubNode = rssNode.SelectSingleNode("title");
                     string title = rssSubNode != null ? rssSubNode.InnerText : "";
@@ -31,10 +30,6 @@ namespace WebCrawler {
 
                     News rssNews = new News(title, img_url, description, url, content);
                     NewsFeed.Add(rssNews);
-                    Console.WriteLine("News count: {0}", ++j);
-                    if (j >= 5) {
-                        break;
-                    }
                 }
             }
         }
