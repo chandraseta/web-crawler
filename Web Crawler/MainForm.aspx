@@ -26,22 +26,23 @@
                     <asp:ListItem Text="Regex" Value="Regex"></asp:ListItem>
                 </asp:RadioButtonList>
                 <asp:Button ID="Button1" runat="server" Text="Search" onclick="ButtonClick"/>
-                <h3>Pesan Kesalahan:</h3>
+                <h3>Input:</h3>
                 <div>
                     <asp:Label ID="textTyped" runat="server"></asp:Label>
                     <br>
                     <asp:Label ID="buttonSelected" runat="server"></asp:Label>
                     <br>
-                    <asp:Label ID="indexHasilPencarian" runat="server"></asp:Label>
-                    <br>
-                    <asp:Label ID="contentHasilPencarian" runat="server"></asp:Label>
-
+                    
                 </div>
 
 
                 <h3>Result:</h3>
                 <div>
-                    
+                    <asp:Label ID="contentHasilPencarian" runat="server"></asp:Label>
+                    <br>
+                    <asp:Label ID="TextBoxKosong" runat="server"></asp:Label>
+                    <br>
+                    <asp:Label ID="ButtonNotSelected" runat="server"></asp:Label>
                 </div>
                 <span runat="server" id="changed_text" />
             </fieldset>

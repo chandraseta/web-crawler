@@ -33,35 +33,74 @@ namespace Web_Crawler
             textTyped.Text = TextBox1.Text;
             if (textTyped.Text == string.Empty)
             {
-                textTyped.Text = "String tidak boleh kosong";
+                textTyped.Text = "String kosong";
             }
             //baca pilihan dari buttonlist
             buttonSelected.Text = RadioButtonList1.SelectedItem.Text;
+            string kalimat = "";
             foreach (News N in NL)
             {
+                GetKalimatInIndex get = new GetKalimatInIndex(N.getContent());
                 //Console.WriteLine("berita: "+N.getContent());
                 if (buttonSelected.Text == "KMP")
                 {
-                    if (textTyped.Text != "String tidak boleh kosong")
+                    if (textTyped.Text != "String kosong")
                     {
                         KMP kmp = new KMP(textTyped.Text);
-                        //N.setContent("Aku yang sangat");
+                        
                         //menampilkan indeks dari konten yang dicari
                         index = kmp.searchIn(N.getContent());
-                        indexHasilPencarian.Text = index.ToString();
-                        contentHasilPencarian.Text += "<br><br>"+N.getContent();
-                        
+                        if(index > 0)
+                        { 
+                            string url = "<a href=" + N.getUrl()+ ">" +N.getTitle()+ "</a>";
+                            kalimat = get.getKalimat(index);
+                            contentHasilPencarian.Text += url + "<br><br>" + kalimat + "<br><br><hr>";
+                        }
                     }
 
-                }
+                }else if(buttonSelected.Text == "Boyer-Moore")
+                {
+                    if (textTyped.Text != "String kosong")
+                    {
+                        BoyerMoore boyerMoore = new BoyerMoore(textTyped.Text);
+                        
+                        //menampilkan indeks dari konten yang dicari
+                        index = boyerMoore.searchIn(N.getContent());
+                        if (index > 0)
+                        {
+                            string url = "<a href=" + N.getUrl() + ">" + N.getTitle() + "</a>";
+                            kalimat = get.getKalimat(index);
+                            contentHasilPencarian.Text += url + "<br><br>" + kalimat + "<br><br><hr>";
+                        }
+
+                    }
+                }else // Regex
+                {
+                    if (textTyped.Text != "String kosong")
+                    {
+                        RegEx regex = new RegEx(textTyped.Text);
+                        //menampilkan indeks dari konten yang dicari
+                        
+                        index = regex.searchIn(N.getContent());
+                        if (index > 0)
+                        {
+                            string url = "<a href=" + N.getUrl() + ">" + N.getTitle() + "</a>";
+                            kalimat = get.getKalimat(index);
+                            contentHasilPencarian.Text += url + "<br><br>" + kalimat + "<br><br><hr>";
+                        }
+
+                    }
+                }       
             }
-
-
-            //buttonSelected.Text = news.getRSSLink();
-            //buttonSelected.Text = RadioButtonList1.SelectedItem.Text;
-            if (buttonSelected.Text == string.Empty)
+            
+            //pesan kesalahan textBoxKosong
+            if (textTyped.Text == "String kosong")
             {
-                buttonSelected.Text = "Button harus dipilih";
+                TextBoxKosong.Text = "String tidak boleh kosong!";
+            }
+            if (textTyped.Text != "String kosong")
+            {
+                textTyped.Text = "<Tidak ada input text>";
             }
 
         }
